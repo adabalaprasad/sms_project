@@ -39,8 +39,8 @@ public class ExcelController
 
         Student s = new Student();
 
-        s.setName("Ravi");
-        s.setEmail("ravi" + System.currentTimeMillis() + "@test.com");
+        s.setName("prasad");
+        s.setEmail("prasad" + System.currentTimeMillis() + "@test.com");
         s.setPhoneNumber("9999999999");
         s.setPassword("1234");
         s.setRole("USER");
