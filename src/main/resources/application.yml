@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: smsservice
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8080
+  address: 0.0.0.0
+ 
+twilio:
+  account:
+    sid: ${TWILIO_SID}
+  auth:
+    token: ${TWILIO_TOKEN}
+  phone:
+    number: ${TWILIO_PHONE}
+
+app:
+  download:
+    url: ${APP_DOWNLOAD_URL}
