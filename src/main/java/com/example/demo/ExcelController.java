@@ -33,12 +33,22 @@ public class ExcelController
                 .body(data);
     }
     
-    @PostMapping("/addStudent")
-    public String addStudent(@RequestBody Student student) 
+    @GetMapping("/addTest")
+    public String addTest() 
     {
 
-        repo.save(student);
+        Student s = new Student();
 
-        return "Student Added Successfully";
+        s.setName("Ravi");
+        s.setEmail("ravi" + System.currentTimeMillis() + "@test.com");
+        s.setPhoneNumber("9999999999");
+        s.setPassword("1234");
+        s.setRole("USER");
+        s.setIsVerified(true);
+        s.setOtp("1111");
+
+        repo.save(s);
+
+        return "Inserted";
     }
 }
