@@ -12,11 +12,16 @@ public class ExcelController
 
     @Autowired
     private ExcelService service;
+    
+    @Autowired
+    private StudentRepo repo;
 
     @GetMapping("/download")
-    public ResponseEntity<?> downloadExcel(@RequestParam long expiry) throws Exception {
+    public ResponseEntity<?> downloadExcel(@RequestParam long expiry) throws Exception 
+    {
 
-        if (System.currentTimeMillis() > expiry) {
+        if (System.currentTimeMillis() > expiry) 
+        {
             return ResponseEntity.badRequest().body("Link Expired");
         }
 
@@ -26,5 +31,14 @@ public class ExcelController
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=students.xlsx")
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(data);
+    }
+    
+    @PostMapping("/addStudent")
+    public String addStudent(@RequestBody Student student) 
+    {
+
+        repo.save(student);
+
+        return "Student Added Successfully";
     }
 }
