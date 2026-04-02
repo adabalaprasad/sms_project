@@ -23,11 +23,14 @@ public class SmsService
 
         Twilio.init(accountSid, authToken);
 
+        System.out.println("SMS method started");
        long expiryTime = System.currentTimeMillis() + (5L * 24 * 60 * 60 * 1000);
        // long expiryTime = System.currentTimeMillis() + (2 * 60 * 1000);
 
         String finalUrl = url + "?expiry=" + expiryTime;
 
+        System.out.println("To Number: " + toPhoneNumber);
+        System.out.println("Final URL: " + finalUrl);
         String messageBody =
                 "Hello " + toPhoneNumber + ",\n" +
                 "Your Student Registration Excel report is ready.\n" +

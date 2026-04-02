@@ -20,13 +20,17 @@ public class SmsController
     {
         try 
         {
+        	System.out.println("Controller reached");
+            System.out.println("Phone: " + request.getPhoneNumber());
             smsService.sendSms(request.getPhoneNumber(), downloadUrl);
 
             return ResponseEntity.ok("SMS Sent Successfully");
+            
         } 
         catch (Exception e) 
         {
             return ResponseEntity.badRequest().body("SMS Failed: " + e.getMessage());
         }
+        
     }
 }
