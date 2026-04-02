@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send SMS</title>
+</head>
+<body>
+
+<h2>Send SMS</h2>
+
+<input type="text" id="phone" placeholder="Enter Your Phone Number">
+<button onclick="sendSms()">Send SMS</button>
+
+<p id="result"></p>
+
+<script>
+function sendSms() {
+    const phoneNumber = document.getElementById("phone").value;
+
+    fetch("https://sms-project-1.onrender.com/sms/send", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            phoneNumber: phoneNumber
+        })
+    })
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("result").innerText = data;
+    })
+    .catch(error => {
+        document.getElementById("result").innerText = error;
+    });
+}
+</script>
+
+</body>
+</html>
