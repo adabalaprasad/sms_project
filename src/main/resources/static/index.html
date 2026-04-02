@@ -1,22 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Send SMS</title>
+    <title>SMS Download Link Service</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            width: 500px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 32px;
+        }
+
+        input {
+            width: 95%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
 </head>
+
 <body>
 
-<h2>Send SMS</h2>
+<div class="container">
+    <h2>SMS Download Link Service</h2>
 
-<input type="text" id="phone" placeholder="Enter Your Phone Number">
-<button onclick="sendSms()">Send SMS</button>
+    <input type="text" id="phone" placeholder="Enter your phone number">
 
-<p id="result"></p>
+    <button onclick="sendSms()">Send SMS</button>
+
+    <p id="result"></p>
+</div>
 
 <script>
 function sendSms() {
     const phoneNumber = document.getElementById("phone").value;
 
-    fetch("https://sms-project-1.onrender.com/sms/send", {
+    document.getElementById("result").innerText = "Sending...";
+
+    fetch("/sms/send", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -30,7 +93,7 @@ function sendSms() {
         document.getElementById("result").innerText = data;
     })
     .catch(error => {
-        document.getElementById("result").innerText = error;
+        document.getElementById("result").innerText = "Failed: " + error;
     });
 }
 </script>
